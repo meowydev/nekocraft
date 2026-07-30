@@ -1,22 +1,27 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <tinyfiledialogs.h>
+#include "crashhandler/crashhandler.hpp"
 
-int main() {
-    int result = tinyfd_messageBox(
-        "NekoCraft crashed",
-        "Core.d failed unexpectedly.\n\nSTOP CODE: CORE.D 0000\n\nTo continue execution press OK otherwise Cancel",
-        "okcancel",
-        "error",
-        0
-    );
+#include <SFML/Graphics.hpp>
 
-    if (result == 1) {
-        printf("Continuing execution");
+int main()
+{
+    sf::RenderWindow window( sf::VideoMode( { 200, 200 } ), "SFML works!" );
+    sf::CircleShape shape( 100.f );
+    shape.setFillColor( sf::Color::Green );
+
+    while ( window.isOpen() )
+    {
+        while ( const std::optional event = window.pollEvent() )
+        {
+            if ( event->is<sf::Event::Closed>() )
+                window.close();
+        }
+
+        window.clear();
+        window.draw( shape );
+        window.display();
     }
-    else if (result == 0) {
-        printf("stopped");
-    }
-
-    return 100;
+    return 0;
 }

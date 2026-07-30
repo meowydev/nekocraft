@@ -17,6 +17,8 @@ find_package(SFML 3 REQUIRED COMPONENTS
 add_executable(${PROJECT_NAME}
         src/main.cpp
         external/tinyfiledialogs/tinyfiledialogs.c
+        src/crashhandler/crashhandler.cpp
+        src/crashhandler/crashhandler.hpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
