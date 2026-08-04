@@ -8,27 +8,30 @@ set(CMAKE_CXX_STANDARD 26) # Put your c++ version supported here
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-find_package(SFML 3 REQUIRED COMPONENTS
-        Graphics
-        Window
-        Audio
-        System)
+find_package(raylib CONFIG REQUIRED)
 
 add_executable(${PROJECT_NAME}
         src/main.cpp
         external/tinyfiledialogs/tinyfiledialogs.c
         src/crashhandler/crashhandler.cpp
         src/crashhandler/crashhandler.hpp
+        src/structs/Button.cpp
+        src/structs/Button.hpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     external/tinyfiledialogs
 )
 
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME}  # Replace with your project name
         PRIVATE
-        SFML::Graphics
-        SFML::Window
-        SFML::Audio
-        SFML::System
+        raylib
 )
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+    target_compile_options(${PROJECT_NAME} PRIVATE  # Replace with your project name
+            -Wall
+            -Wextra
+            -Wpedantic
+    )
+endif()
