@@ -18,6 +18,7 @@ namespace nekocraft {
                 1
             );
         }
+        return;
     }
 
     void crashhandler::Fatal(const char *msg) {

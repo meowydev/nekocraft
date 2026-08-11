@@ -21,6 +21,8 @@ add_executable(${PROJECT_NAME}
         src/structs/BlockID.hpp
         src/chunks/chunkType.hpp
         src/chunks/chunkGen.hpp
+        src/chunks/chunkMesh.hpp
+        src/chunks/chunkModel.hpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

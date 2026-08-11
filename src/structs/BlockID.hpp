@@ -5,7 +5,7 @@
 #include <string>
 #include <unordered_map>
 
-
+// future meowy pls remake this into enum when you are going to make a system of something that makes user type that shit
 inline std::unordered_map<std::string, int> BlockIDS = {
 
     {"nekocraft:air", 0},
