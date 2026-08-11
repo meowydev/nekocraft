@@ -7,10 +7,10 @@
 
 namespace GUI {
     Button::Button(
-            Texture2D normal,
-            Texture2D hover,
-            Vector2 pos,
-            std::string txt
+            const Texture2D &normal,
+            const Texture2D &hover,
+            const Vector2 &pos,
+            const std::string &txt
         )
     {
         Image = normal;

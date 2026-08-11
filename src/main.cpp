@@ -1,9 +1,8 @@
 #include <iostream>
 #include <raylib.h>
-#include <tinyfiledialogs.h>
-#include "crashhandler/crashhandler.hpp"
 #include <vector>
 #include "structs/Button.hpp"
+#include "structs/Block.hpp"
 
 int main()
 {
@@ -14,12 +13,22 @@ int main()
 
     Sound GUISelect = LoadSound("assets/sound/select.mp3");
 
-    GUI::Button sampleBtn(
-        LoadTexture("assets/button.png"),
-        LoadTexture("assets/button_highlighted.png"),
-        {50,50},
-        "Hello!"
-    );
+    // Camera
+
+    Camera3D cam;
+
+    cam.fovy = 45.0f;
+    cam.position = {5.0f,3.0f,0.0f};
+    cam.projection = CAMERA_PERSPECTIVE;
+    cam.target = {0.0f,1.0f,0.0f};
+    cam.up = {0.0f,1.0f,0.0f};
+
+    // Textures
+
+    Texture2D grass = LoadTexture("assets/textures/grass.png");
+    SetTextureFilter(grass, TEXTURE_FILTER_POINT);
+
+
 
     while (!WindowShouldClose()) {
 
@@ -27,20 +36,23 @@ int main()
         int screenCenterY = GetScreenHeight() / 2;
         Vector2 cursorPosScreen = GetMousePosition();
 
-        sampleBtn.Update();
-
-        if (sampleBtn.IsClicked()) {
-            PlaySound(GUISelect);
-        }
+        UpdateCamera(&cam, CAMERA_FREE);
 
         BeginDrawing();
 
-            sampleBtn.Draw();
+            BeginMode3D(cam);
+
+                DrawGrid(10,10);
+
+            EndMode3D();
 
         EndDrawing();
 
+        ClearBackground(WHITE);
+
     }
 
+    UnloadTexture(grass);
     UnloadSound(GUISelect);
 
     CloseWindow();

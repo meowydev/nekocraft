@@ -17,6 +17,8 @@ add_executable(${PROJECT_NAME}
         src/crashhandler/crashhandler.hpp
         src/structs/Button.cpp
         src/structs/Button.hpp
+        src/structs/Block.hpp
+        src/structs/BlockID.hpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
