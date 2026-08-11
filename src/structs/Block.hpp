@@ -11,22 +11,22 @@
 namespace nekocraft {
     class Block {
     public:
-        Block(
-            const Texture2D &texture
-        )
+        Block()
         {
             mesh = GenMeshCube(1.0f,1.0f,1.0f);
             cube = LoadModelFromMesh(mesh);
 
+        }
+
+        void Draw(const Vector3 &position, const Texture2D &texture) {
+
             cube.materials[0]
                 .maps[MATERIAL_MAP_ALBEDO]
                 .texture = texture;
-        }
 
-        void Draw() const {
             DrawModel(
                 cube,
-                {0.0f,0.0f,0.0f},
+                position,
                 1.0f,
                 WHITE
             );
