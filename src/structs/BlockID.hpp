@@ -6,6 +6,7 @@
 
 inline std::unordered_map<std::string, int> BlockIDS = {
 
+    {"nekocraft:air", 0},
     {"nekocraft:grass_block", 1}
 
 };
